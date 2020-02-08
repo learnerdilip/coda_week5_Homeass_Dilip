@@ -1,5 +1,5 @@
+//Database setup
 const Sequelize = require("sequelize");
-
 const databaseUrl = "postgres://postgres:secret@localhost:5432/postgres";
 
 const db = new Sequelize(databaseUrl);
@@ -33,12 +33,4 @@ db.sync()
   )
   .catch(err => console.error("ERROR"));
 
-// app.get("/:movie", (req,res, next) => {
-//   Movie.findOne({
-//     where: {
-//       req.body.title === `${movie}`
-//     }
-//   })
-//     .then(movie => res.send(movie))
-//     .catch(err => next(err))
-// })
+module.exports = Movie;
