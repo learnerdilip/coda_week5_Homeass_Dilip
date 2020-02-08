@@ -3,7 +3,7 @@ const Movie = require("../saturday-homeassignment/sequelize-rest");
 const express = require("express");
 const app = express();
 
-const port = 4001;
+const port = 4002;
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -20,8 +20,11 @@ app.post("/movies", (req, res, next) => {
 
 // READ ALL
 app.get("/movies", (req, res, next) => {
-  Movie.findAll()
-    .then(movies => res.send(movies))
+  const limit = req.query.limit || 5;
+  const offset = req.query.offset || 0;
+  // console.warn("LIMIT AND OFFSET", req.query.limit, req.query.offset);
+  Movie.findAll({ limit, offset })
+    .then(movies => res.send({ data: movies, total: movies.length }))
     .catch(err => next(err));
 });
 
