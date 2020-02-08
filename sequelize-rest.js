@@ -10,7 +10,7 @@ const Movie = db.define("movie", {
   synopsis: Sequelize.STRING
 });
 
-db.sync()
+db.sync({ force: true })
   .then(() => console.log("Databse Connected"))
   .then(() =>
     Promise.all([
@@ -37,7 +37,7 @@ db.sync()
 const express = require("express");
 const app = express();
 
-const port = 4010;
+const port = 4000;
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
